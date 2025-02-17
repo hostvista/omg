@@ -1,8 +1,9 @@
+from dotenv import load_dotenv
+load_dotenv()  # This must come before any other imports
+
 import os
 import random
-import string
 from datetime import datetime, timedelta
-from typing import Dict
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
@@ -14,7 +15,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 import fireworks.client
 from fireworks.client.image import ImageInference, Answer
 
-# Configure API keys
+# Configure API keys using environment variables
 fireworks.client.api_key = os.getenv("FIREWORKS_API_KEY")
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 
@@ -64,11 +65,12 @@ IMAGE_SIZES = [
 ]
 
 DAILY_CREDITS = 3
-ADMIN_IDS = [123456789]  # Replace with actual admin IDs
+ADMIN_IDS = [5500026782]  # Replace with actual admin IDs
 SAMPLER = "DPMPP_2M_KARRAS"
 CFG_SCALE = 7
 STEPS = 100
 
+# Telegram Handlers
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     session = Session()
