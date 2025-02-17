@@ -64,7 +64,7 @@ IMAGE_SIZES = [
 ]
 
 DAILY_CREDITS = 3
-ADMIN_IDS = [5500026782]  # Replace with actual admin IDs
+ADMIN_IDS = [123456789]  # Replace with actual admin IDs
 SAMPLER = "DPMPP_2M_KARRAS"
 CFG_SCALE = 7
 STEPS = 100
@@ -218,7 +218,6 @@ async def handle_coupon(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     await update.message.reply_text(f"🎉 Coupon redeemed! +{coupon.credits} credits")
 
-# Admin commands
 def admin_required(func):
     async def wrapper(update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
@@ -249,17 +248,14 @@ async def cron_daily_credits(context: ContextTypes.DEFAULT_TYPE):
 def main():
     application = Application.builder().token(TELEGRAM_TOKEN).build()
     
-    # Command handlers
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("create", create_image))
     application.add_handler(CommandHandler("coupon", coupon_command))
     application.add_handler(CommandHandler("admin", admin_panel))
     
-    # Message handlers
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
     application.add_handler(CallbackQueryHandler(button_handler))
     
-    # Daily credit reset job
     application.job_queue.run_daily(
         cron_daily_credits,
         time=datetime.time(hour=0),
