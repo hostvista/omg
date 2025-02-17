@@ -1,0 +1,4 @@
+python-telegram-bot==20.7
+fireworks-ai
+python-dotenv
+sqlite3
