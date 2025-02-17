@@ -19,7 +19,6 @@ API_KEY = os.getenv("FIREWORKS_API_KEY")
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 DB_NAME = "indie_ai.db"
 ADMIN_USER_IDS = [5500026782]  # Replace with your admin user IDs
-
 # Initialize Fireworks client
 fireworks.client.api_key = API_KEY
 inference_client = ImageInference(model="accounts/fireworks/models/playground-v2-5-1024px-aesthetic")
