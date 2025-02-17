@@ -64,7 +64,7 @@ IMAGE_SIZES = [
 ]
 
 DAILY_CREDITS = 3
-ADMIN_IDS = [123456789]  # Replace with actual admin IDs
+ADMIN_IDS = [5500026782]  # Replace with actual admin IDs
 SAMPLER = "DPMPP_2M_KARRAS"
 CFG_SCALE = 7
 STEPS = 100
